@@ -1,49 +1,83 @@
+<div align="center">
+
 # 🏥 Hospital Management System - Frontend
 
-A modern and responsive frontend application for a Hospital Management System.
+### Modern Hospital Management Dashboard
 
-The application provides an administrative dashboard for managing hospital information, departments, doctors, doctor schedules, appointments, advertisements, users, and account settings.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack_Query-5-FF4154?logo=reactquery)](https://tanstack.com/query)
+[![Zustand](https://img.shields.io/badge/Zustand-State-orange)](https://zustand.docs.pmnd.rs/)
+[![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?logo=docker)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-The frontend is built with modern React technologies and communicates with a RESTful backend API.
+</div>
 
 ---
 
-# 🚀 Features
+## 🏥 About
+
+A modern and responsive frontend application for managing hospital operations.
+
+The system provides an administrative dashboard for managing doctors, departments, appointments, users, advertisements, hospital information, doctor schedules, and account settings.
+
+The application is built with **Next.js, React, TypeScript, Tailwind CSS, TanStack Query, and Zustand**, and communicates with a RESTful backend API.
+
+---
+
+## 🚀 Features
 
 - 🔐 Authentication & Authorization
-- 👤 User Authentication
-- 🛡️ Role-Based Access Control
-- 📊 Admin Dashboard
-- 📈 Dashboard Statistics
-- 📅 Appointments Management
-- 👨‍⚕️ Doctors Management
-- 🏥 Departments Management
-- 🏢 Hospital Information Management
-- 📢 Advertisements Management
+- 👥 User Management
+- 👨‍⚕️ Doctor Management
+- 🏥 Department Management
+- 📅 Appointment Management
 - 🕒 Doctor Schedule Management
-- 👥 Users Management
-- 🔎 Searching
-- 🎯 Filtering
+- 📢 Advertisement Management
+- 🏢 Hospital Information Management
+- 📊 Dashboard Statistics
+- 📈 Appointment Analytics
+- 💰 Revenue Statistics
+- 🔎 Search & Filtering
 - 📄 Pagination
 - ↕️ Sorting
-- 📝 Form Validation
-- 📱 Responsive Design
-- 🌐 Arabic RTL Interface
 - ⚙️ Account Settings
-- 📞 Change Phone Number with OTP Verification
-- 🔑 Change Password
-- 👤 Update Personal Information
-- ⚡ Server State Management with React Query
-- 🧠 Client State Management with Zustand
+- 📞 Phone Number Change with OTP
+- 🔑 Password Change
+- 📝 Form Validation
+- 🌐 Arabic RTL Interface
+- 📱 Responsive Design
+- ⚡ React Query Caching
 - 🐳 Docker Support
 
 ---
 
-# 🖥️ Dashboard
+## 🛠 Tech Stack
 
-The admin dashboard provides an overview of the hospital system.
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **TanStack React Query**
+- **Zustand**
+- **React Hook Form**
+- **Zod**
+- **Axios**
+- **Recharts**
+- **Lucide React**
+- **Sonner**
+- **Docker**
 
-Dashboard statistics include:
+---
+
+## 📊 Dashboard
+
+The dashboard provides administrators with an overview of the hospital system.
+
+It displays:
 
 - Total Users
 - Total Doctors
@@ -57,47 +91,37 @@ Dashboard statistics include:
 - Total Revenue
 - Monthly Revenue
 
-The dashboard also includes appointment statistics charts with year-based filtering.
+It also provides appointment analytics with year-based filtering.
 
 ---
 
-# 📅 Appointments Management
+## 📅 Appointment Management
 
-The appointment management section allows administrators and authorized users to:
+Administrators can:
 
 - View appointments
 - Search appointments
-- Filter appointments
 - Filter by status
 - Filter by doctor
 - Filter by patient gender
 - Filter by appointment date
 - Filter by date range
-- Filter by day of week
+- Filter by day
 - Sort appointments
 - View appointment details
-- Update appointment status
+- Approve appointments
+- Reject appointments
 - Cancel appointments
 - View payment receipts
 
-Supported appointment statuses include:
-
-- Pending
-- Approved
-- Rejected
-- Cancelled
-
 ---
 
-# 👨‍⚕️ Doctors Management
+## 👨‍⚕️ Doctor Management
 
-The doctors section provides complete management of doctors.
+The doctor management section provides:
 
-Features include:
-
-- View doctors
 - Add doctors
-- Update doctors
+- Edit doctors
 - Delete doctors
 - Search doctors
 - Filter doctors
@@ -106,86 +130,35 @@ Features include:
 - Filter by consultation fee
 - Assign doctors to departments
 - Manage doctor schedules
-- View doctor information
 
 ---
 
-# 🏥 Departments Management
+## 🏥 Department Management
 
-Administrators can manage hospital departments.
+Administrators can:
 
-Features include:
-
-- View departments
 - Add departments
-- Update departments
+- Edit departments
 - Delete departments
 - Search departments
 - Upload department images
 - View department information
-- Manage doctors associated with departments
+- Manage department doctors
 
 ---
 
-# 🕒 Doctor Schedules
+## 👥 User Management
 
-The application provides a dedicated interface for managing doctor working schedules.
-
-Features include:
-
-- Add doctor schedules
-- Update schedules
-- Delete schedules
-- Assign working days
-- Configure working hours
-- Manage morning and evening shifts
-- View doctor availability
-
----
-
-# 🏢 Hospital Management
-
-Administrators can manage hospital information including:
-
-- Hospital name
-- Hospital location
-- Phone number
-- Hospital image
-
-The interface supports updating hospital information and uploading images.
-
----
-
-# 📢 Advertisements Management
-
-The advertisement management section allows administrators to:
-
-- View advertisements
-- Add advertisements
-- Update advertisements
-- Delete advertisements
-- Upload advertisement images
-- Manage advertisement information
-
----
-
-# 👥 Users Management
-
-The users management section allows administrators to manage system users.
-
-Features include:
+The users section provides:
 
 - View users
 - Search users
 - Filter users
-- Filter by role
-- Filter by gender
-- Filter by account status
-- Update user information
-- Change user role
+- Change user roles
 - Activate/deactivate users
+- Edit user information
 
-Supported roles include:
+Supported roles:
 
 - Admin
 - Receptionist
@@ -193,15 +166,11 @@ Supported roles include:
 
 ---
 
-# ⚙️ Account Settings
+## ⚙️ Account Settings
 
-Users can manage their own account information from the settings page.
-
-Available features:
+Users can manage their personal account information.
 
 ### 👤 Personal Information
-
-Users can update:
 
 - Full name
 - Email
@@ -212,49 +181,15 @@ Users can update:
 
 The phone number is used as the primary login identifier.
 
-Changing the phone number requires:
-
-1. Entering the new phone number
-2. Sending an OTP
-3. Verifying the OTP
-4. Updating the phone number
-5. Logging in again with the new number
-
-### 🔑 Change Password
-
-Users can change their password by providing:
-
-- Current password
-- New password
-- Password confirmation
-
-After successfully changing the password, the current session is terminated and the user is redirected to the login page.
-
----
-
-# 🔐 Authentication
-
-Authentication is handled through the backend API.
-
-The frontend uses:
-
-- JWT Authentication
-- HTTP Cookies
-- Protected Routes
-- Role-Based Access Control
-
-Authentication state is managed using Zustand.
-
-The application also uses an API endpoint to retrieve the currently authenticated user.
-
----
-
-# 🧠 State Management
-
-The project uses **Zustand** for client-side authentication state.
-
-Example structure:
+The process uses OTP verification:
 
 ```text
-store/
-└── auth.store.ts
+Enter New Phone
+       ↓
+Send OTP
+       ↓
+Verify OTP
+       ↓
+Update Phone Number
+       ↓
+Login Again
