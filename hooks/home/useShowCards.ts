@@ -17,7 +17,7 @@ import {useDashboardStatistics} from "./useDashboardStatistics";
 
 const useShowCards = () => {
     const {data, isLoading} = useDashboardStatistics();
-    console.log(data)
+
     const cardData: CardData[] = [
         {
             id: 1,

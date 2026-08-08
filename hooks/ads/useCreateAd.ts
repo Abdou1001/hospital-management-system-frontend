@@ -17,8 +17,16 @@ export function useCreateAd() {
             toast.success("تم إنشاء الإعلان بنجاح.");
         },
 
-        onError: (error: Error) => {
-            toast.error(error.message || "حدث خطأ أثناء إنشاء الإعلان.");
+        onError: (error: any) => {
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => {
+                    toast.error(err.message);
+                });
+            } else {
+                toast.error("حدث خطأ أثناء إضافة اعلان");
+            }
         },
     });
 }

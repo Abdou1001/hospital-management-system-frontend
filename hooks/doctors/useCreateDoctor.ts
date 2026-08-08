@@ -19,7 +19,15 @@ export function useCreateDoctor() {
         },
 
         onError: (error: any) => {
-            toast.error(error.response?.data?.message || "حدث خطأ اثناء اضافة طبيب");
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => {
+                    toast.error(err.message);
+                });
+            } else {
+                toast.error("حدث خطأ أثناء إضافة الطبيب");
+            }
         },
     });
 }

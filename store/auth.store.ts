@@ -1,9 +1,12 @@
 import {create} from "zustand";
 
 export interface User {
-    user_id: string;
+    user_id: number;
     full_name: string;
-    email: string;
+    email: string | null;
+    phone_number: string;
+    gender: "ذكر" | "أنثى";
+    date_of_birth: string | null;
     role: "admin";
 }
 

@@ -20,15 +20,15 @@ export default function AppointmentDoctorCard({appointment}: Props) {
             <CardContent className="space-y-5 pt-6">
                 <div className="flex flex-col items-center gap-3">
                     <Image
-                        src={appointment.doctor.path_image}
-                        alt={appointment.doctor.full_name}
+                        src={appointment.doctor_schedule.doctor.path_image}
+                        alt={appointment.doctor_schedule.doctor.full_name}
                         width={90}
                         height={90}
                         className="rounded-full object-cover"
                     />
 
                     <h3 className="font-semibold text-lg">
-                        {appointment.doctor.full_name}
+                        {appointment.doctor_schedule.doctor.full_name}
                     </h3>
                 </div>
 

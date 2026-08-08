@@ -15,20 +15,28 @@ export function useUpdateDepartment() {
             data: Parameters<typeof updateDepartment>[1];
         }) => updateDepartment(id, data),
 
-        onSuccess: (_, variables) => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({
                 queryKey: ["departments"],
             });
 
             queryClient.invalidateQueries({
-                queryKey: ["department", variables.id],
+                queryKey: ["department", data.results.depart_id],
             });
 
             toast.success("تم تحديث القسم بنجاح.");
         },
 
-        onError: (error: Error) => {
-            toast.error(error.message || "حدث خطأ أثناء تحديث القسم.");
+        onError: (error: any) => {
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => toast.error(err.message));
+            } else {
+                toast.error(
+                    error.response?.data?.message || "حدث خطأ أثناء حذف القسم",
+                );
+            }
         },
     });
 }

@@ -25,6 +25,17 @@ export default function DoctorsToolbar({
     filters,
     onFiltersChange,
 }: DoctorsToolbarProps) {
+    const feeValue =
+        filters.min_fee === undefined && filters.max_fee === undefined
+            ? "all"
+            : `${filters.min_fee ?? ""}-${filters.max_fee ?? ""}`;
+
+    const experienceValue =
+        filters.min_experience === undefined &&
+        filters.max_experience === undefined
+            ? "all"
+            : `${filters.min_experience ?? ""}-${filters.max_experience ?? ""}`;
+
     return (
         <div className="space-y-4 rounded-lg border bg-card p-4">
             {/* =========================
@@ -59,7 +70,7 @@ export default function DoctorsToolbar({
             {/* =========================
                 الفلاتر
             ========================= */}
-            <div className="grid gap-3 grid-cols-6">
+            <div className="grid gap-2 grid-cols-6">
                 {/* الحالة */}
                 <div className="space-y-1">
                     <p className="text-xs text-muted-foreground">الحالة</p>
@@ -75,7 +86,7 @@ export default function DoctorsToolbar({
                                 page: 1,
                             })
                         }>
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
 
@@ -104,7 +115,7 @@ export default function DoctorsToolbar({
                                 page: 1,
                             })
                         }>
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
 
@@ -123,70 +134,44 @@ export default function DoctorsToolbar({
                     <p className="text-xs text-muted-foreground">رسوم الكشف</p>
 
                     <Select
-                        value={
-                            filters.min_fee === undefined &&
-                            filters.max_fee === undefined
-                                ? "all"
-                                : filters.min_fee === 0 &&
-                                    filters.max_fee === 5000
-                                  ? "0-5000"
-                                  : filters.min_fee === 5001 &&
-                                      filters.max_fee === 10000
-                                    ? "5001-10000"
-                                    : "10000+"
-                        }
+                        value={feeValue}
                         onValueChange={(value) => {
-                            switch (value) {
-                                case "all":
-                                    onFiltersChange({
-                                        min_fee: undefined,
-                                        max_fee: undefined,
-                                        page: 1,
-                                    });
-                                    break;
+                            const values = {
+                                all: {
+                                    min_fee: undefined,
+                                    max_fee: undefined,
+                                },
+                                "0-5000": {
+                                    min_fee: 0,
+                                    max_fee: 5000,
+                                },
+                                "5001-10000": {
+                                    min_fee: 5001,
+                                    max_fee: 10000,
+                                },
+                                "10001-": {
+                                    min_fee: 10001,
+                                    max_fee: undefined,
+                                },
+                            };
 
-                                case "0-5000":
-                                    onFiltersChange({
-                                        min_fee: 0,
-                                        max_fee: 5000,
-                                        page: 1,
-                                    });
-                                    break;
-
-                                case "5001-10000":
-                                    onFiltersChange({
-                                        min_fee: 5001,
-                                        max_fee: 10000,
-                                        page: 1,
-                                    });
-                                    break;
-
-                                case "10000+":
-                                    onFiltersChange({
-                                        min_fee: 10001,
-                                        max_fee: undefined,
-                                        page: 1,
-                                    });
-                                    break;
-                            }
+                            onFiltersChange({
+                                ...values[value as keyof typeof values],
+                                page: 1,
+                            });
                         }}>
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
 
                         <SelectContent>
                             <SelectItem value="all">جميع الرسوم</SelectItem>
-
-                            <SelectItem value="0-5000">
-                                0 - 5,000 ر.ي
-                            </SelectItem>
-
+                            <SelectItem value="0-5000">0 - 5000 ر.ي</SelectItem>
                             <SelectItem value="5001-10000">
                                 5,001 - 10,000 ر.ي
                             </SelectItem>
-
-                            <SelectItem value="10000+">
-                                أكثر من 10,000 ر.ي
+                            <SelectItem value="10001-">
+                                أكثر من ر.ي 10,000
                             </SelectItem>
                         </SelectContent>
                     </Select>
@@ -199,54 +184,33 @@ export default function DoctorsToolbar({
                     </p>
 
                     <Select
-                        value={
-                            filters.min_experience === undefined &&
-                            filters.max_experience === undefined
-                                ? "all"
-                                : filters.min_experience === 0 &&
-                                    filters.max_experience === 5
-                                  ? "0-5"
-                                  : filters.min_experience === 6 &&
-                                      filters.max_experience === 10
-                                    ? "6-10"
-                                    : "10+"
-                        }
+                        value={experienceValue}
                         onValueChange={(value) => {
-                            switch (value) {
-                                case "all":
-                                    onFiltersChange({
-                                        min_experience: undefined,
-                                        max_experience: undefined,
-                                        page: 1,
-                                    });
-                                    break;
+                            const values = {
+                                all: {
+                                    min_experience: undefined,
+                                    max_experience: undefined,
+                                },
+                                "0-5": {
+                                    min_experience: 0,
+                                    max_experience: 5,
+                                },
+                                "6-10": {
+                                    min_experience: 6,
+                                    max_experience: 10,
+                                },
+                                "11-": {
+                                    min_experience: 11,
+                                    max_experience: undefined,
+                                },
+                            };
 
-                                case "0-5":
-                                    onFiltersChange({
-                                        min_experience: 0,
-                                        max_experience: 5,
-                                        page: 1,
-                                    });
-                                    break;
-
-                                case "6-10":
-                                    onFiltersChange({
-                                        min_experience: 6,
-                                        max_experience: 10,
-                                        page: 1,
-                                    });
-                                    break;
-
-                                case "10+":
-                                    onFiltersChange({
-                                        min_experience: 11,
-                                        max_experience: undefined,
-                                        page: 1,
-                                    });
-                                    break;
-                            }
+                            onFiltersChange({
+                                ...values[value as keyof typeof values],
+                                page: 1,
+                            });
                         }}>
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
 
@@ -261,7 +225,7 @@ export default function DoctorsToolbar({
                                 من 6 إلى 10 سنوات
                             </SelectItem>
 
-                            <SelectItem value="10+">
+                            <SelectItem value="11-">
                                 أكثر من 10 سنوات
                             </SelectItem>
                         </SelectContent>
@@ -280,7 +244,7 @@ export default function DoctorsToolbar({
                                 page: 1,
                             })
                         }>
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
 

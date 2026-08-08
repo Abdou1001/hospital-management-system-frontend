@@ -27,11 +27,8 @@ export type User = z.infer<typeof userSchema>;
 
 export const usersResponseSchema = z.object({
     status: z.literal("success"),
-
     message: z.string(),
-
     pagination: paginationSchema,
-
     results: z.array(userSchema),
 });
 

@@ -30,7 +30,7 @@ export default function AppointmentDetailsPage() {
         return <div>الحجز غير موجود</div>;
     }
     const appointment = data.results;
-
+    console.log(appointment)
     return (
         <div className="space-y-6">
             <div className="flex items-start justify-between">

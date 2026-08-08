@@ -18,7 +18,6 @@ export const departmentColumns: ColumnDef<Department>[] = [
 
         cell: ({row}) => {
             const image = row.original.path_image ?? "/1770063447309.jpg";
-            console.log(row.original.path_image)
             return (
                 <div className="relative h-12 w-12 overflow-hidden rounded-md border">
                     <Image

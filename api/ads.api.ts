@@ -15,7 +15,6 @@ export async function getAds(filters: AdsFilters) {
         params: filters,
     });
 
-    console.log(data)
 
     return data;
 }

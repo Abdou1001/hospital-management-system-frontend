@@ -17,8 +17,16 @@ export function useCreateDepartment() {
             toast.success("تم إنشاء القسم بنجاح.");
         },
 
-        onError: (error: Error) => {
-            toast.error(error.message || "حدث خطأ أثناء إنشاء القسم.");
+        onError: (error: any) => {
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => toast.error(err.message));
+            } else {
+                toast.error(
+                    error.response?.data?.message || "حدث خطأ أثناء حذف القسم",
+                );
+            }
         },
     });
 }

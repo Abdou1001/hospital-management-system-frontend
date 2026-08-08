@@ -26,14 +26,18 @@ export const appointmentsColumns: ColumnDef<Appointment>[] = [
         cell: ({row}) => (
             <div className="flex items-center gap-2">
                 <Avatar className="h-9 w-9">
-                    <AvatarImage src={row.original.doctor.path_image} />
+                    <AvatarImage
+                        src={row.original.doctor_schedule?.doctor.path_image}
+                    />
 
                     <AvatarFallback>
-                        {row.original.doctor.full_name.charAt(0)}
+                        {row.original.doctor_schedule?.doctor.full_name.charAt(
+                            0,
+                        )}
                     </AvatarFallback>
                 </Avatar>
 
-                <span>{row.original.doctor.full_name}</span>
+                <span>{row.original.doctor_schedule?.doctor?.full_name}</span>
             </div>
         ),
     },
@@ -58,8 +62,7 @@ export const appointmentsColumns: ColumnDef<Appointment>[] = [
     {
         accessorKey: "created_at",
         header: "تاريخ الإنشاء",
-        cell: ({row}) =>
-            new Date(row.original.created_at).toLocaleDateString(),
+        cell: ({row}) => new Date(row.original.created_at).toLocaleDateString(),
     },
     {
         id: "actions",

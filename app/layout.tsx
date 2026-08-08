@@ -29,7 +29,7 @@ export default function RootLayout({
             <body className="min-h-screen">
                 <QueryProvider>
                     {children}
-                    <Toaster />
+                    <Toaster dir="rtl" position="top-left" />
                 </QueryProvider>
             </body>
         </html>

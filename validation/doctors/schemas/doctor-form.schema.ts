@@ -7,17 +7,31 @@ import {GENDER, STATUS} from "@/types/enums";
 ============================================================ */
 
 export const doctorScheduleFormSchema = z.object({
-    
-    day_of_week: z.string().min(1, "اليوم مطلوب"),
+    schedule_id: z.number().nullable().optional(),
 
-    shift_type: z.string().min(1, "الفترة مطلوبة"),
+    day_of_week: z.string(),
 
-    start_time: z.string().min(1, "وقت البداية مطلوب"),
+    shift_type: z.string(),
 
-    end_time: z.string().min(1, "وقت النهاية مطلوب"),
+    start_time: z
+        .string("وقت بداية الدوام مطلوب")
+        .regex(
+            /^([01]?\d|2[0-3]):([0-5]\d)(:([0-5]\d))?$/,
+            "صيغة وقت البداية غير صحيحة",
+        ),
 
-    max_patients: z.number()
-        .min(1, "عدد المرضى يجب أن يكون أكبر من صفر"),
+    end_time: z
+        .string("وقت نهاية الدوام مطلوب")
+        .regex(
+            /^([01]?\d|2[0-3]):([0-5]\d)(:([0-5]\d))?$/,
+            "صيغة وقت النهاية غير صحيحة",
+        ),
+
+    max_patients: z
+        .number("الحد الأقصى للمرضى مطلوب")
+        .int("يجب أن يكون عدداً صحيحاً")
+        .min(5, "الحد الأدنى خمسة مرضة")
+        .max(100, "الحد الأقصى غير منطقي"),
 
     status: z.enum(STATUS),
 
@@ -35,13 +49,16 @@ export const doctorFormSchema = z.object({
         .min(3, "اسم الطبيب يجب أن يكون 3 أحرف على الأقل")
         .max(100),
 
-    bio: z.string().trim().max(500).optional(),
+    bio: z.string("الوصف مطلوب").trim().max(500),
 
     education: z.string().trim().max(255).optional(),
 
     gender: z.enum(GENDER),
 
-    department_ids: z.array(z.number()).min(1, "اختر قسمًا واحدًا على الأقل"),
+    department_ids: z
+        .array(z.number())
+        .min(1, "اختر قسمًا واحدًا على الأقل")
+        .optional(),
 
     email: z
         .union([z.literal(""), z.string().email("البريد الإلكتروني غير صالح")])
@@ -51,7 +68,7 @@ export const doctorFormSchema = z.object({
 
     years_exper: z.number().min(0).optional(),
 
-    consultation_fee: z.number().min(0),
+    consultation_fee: z.number().min(1000).max(50000),
 
     notes: z.string().optional(),
 
@@ -61,7 +78,7 @@ export const doctorFormSchema = z.object({
        الدوامات
     =============================== */
 
-    schedules: z.array(doctorScheduleFormSchema).optional(),
+    schedules: z.array(doctorScheduleFormSchema),
 });
 
 export type DoctorFormValues = z.infer<typeof doctorFormSchema>;

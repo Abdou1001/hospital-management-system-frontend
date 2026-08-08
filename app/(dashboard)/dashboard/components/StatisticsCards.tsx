@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import CountUp from "react-countup";
+import {formatNumber} from "@/lib/formatNumber";
 import {
     Card,
     CardContent,
@@ -8,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import {CardData} from "@/types/data";
 
-const StatisticsCards = ({data} : {data: CardData}) => {
+const StatisticsCards = ({data}: {data: CardData}) => {
     return (
         <Card key={data.id} className="gap-3">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
@@ -20,11 +23,19 @@ const StatisticsCards = ({data} : {data: CardData}) => {
             {/* Content */}
             <CardContent>
                 <div className="text-2xl font-bold text-center mb-2">
-                    {data.value}
+                    <CountUp
+                        start={0}
+                        end={+data.value}
+                        duration={2}
+                        separator=","
+                        formattingFn={formatNumber}
+                    />
                 </div>
 
                 {/* Footer */}
-                {data.footer && <CardDescription>{data.footer}</CardDescription>}
+                {data.footer && (
+                    <CardDescription>{data.footer}</CardDescription>
+                )}
             </CardContent>
         </Card>
     );

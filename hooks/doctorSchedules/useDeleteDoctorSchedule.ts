@@ -15,10 +15,22 @@ export function useDeleteDoctorSchedule() {
             queryClient.invalidateQueries({
                 queryKey: ["doctor-schedules"],
             });
+
+            queryClient.invalidateQueries({
+                queryKey: ["doctor-schedule", data.results.schedule_id],
+            });
         },
 
         onError: (error: any) => {
-            toast.error(error.response?.data?.message);
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => {
+                    toast.error(err.message);
+                });
+            } else {
+                toast.error("حدث خطأ أثناء حذف الدوام للطبيب");
+            }
         },
     });
 }

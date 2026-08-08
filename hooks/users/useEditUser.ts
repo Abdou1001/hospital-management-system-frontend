@@ -18,11 +18,16 @@ export const useChangeStatusUsers = () => {
             });
         },
 
-        onError(error: any) {
-            toast.error(
-                error?.response?.data?.message ??
-                    "حدث خطأ أثناء تغيير حالة الحساب",
-            );
+        onError: (error: any) => {
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => {
+                    toast.error(err.message);
+                });
+            } else {
+                toast.error("حدث خطأ أثناء تعديل حالة المستخدم");
+            }
         },
     });
 };
@@ -42,11 +47,16 @@ export const useChangeRoleUsers = () => {
             });
         },
 
-        onError(error: any) {
-            toast.error(
-                error?.response?.data?.message ??
-                    "حدث خطأ أثناء تغيير صلاحية المستخدم",
-            );
+        onError: (error: any) => {
+            const errors = error.response?.data?.errors;
+
+            if (errors?.length) {
+                errors.forEach((err: any) => {
+                    toast.error(err.message);
+                });
+            } else {
+                toast.error("حدث خطأ أثناء تعديل صلاحية المستخدم");
+            }
         },
     });
 };

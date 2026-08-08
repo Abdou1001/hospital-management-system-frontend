@@ -48,7 +48,6 @@ export default function EditDoctorPage() {
 
     const doctor = doctorData.results;
 
-    console.log(doctorSchedule);
 
     return (
         <DoctorForm
@@ -75,7 +74,7 @@ export default function EditDoctorPage() {
                     ) ?? [],
 
                 schedules:
-                    doctorSchedule?.results.map((item : any) => ({
+                    doctorSchedule?.results.map((item: any) => ({
                         schedule_id: item.schedule_id,
                         day_of_week: item.day_of_week,
                         shift_type: item.shift_type,
@@ -88,9 +87,19 @@ export default function EditDoctorPage() {
             }}
             onSubmit={async (values, image) => {
                 try {
+                    /* ==========================================
+            تجهيز بيانات الطبيب
+        ========================================== */
                     const formData = new FormData();
+
                     Object.entries(values).forEach(([key, value]) => {
-                        if (key !== "department_ids") {
+                        if (
+                            key !== "department_ids" &&
+                            key !== "schedules" &&
+                            value !== undefined &&
+                            value !== null &&
+                            value !== ""
+                        ) {
                             formData.append(key, String(value));
                         }
                     });
@@ -99,22 +108,25 @@ export default function EditDoctorPage() {
                         formData.append("path_image", image);
                     }
 
+                    /* ==========================================
+            تحديث بيانات الطبيب
+        ========================================== */
                     await updateDoctorMutation.mutateAsync({
                         id: doctorId,
-                        formData: formData,
+                        formData,
                     });
 
+                    /* ==========================================
+            الأقسام
+        ========================================== */
                     const currentDepartments = doctorDepartments?.results ?? [];
 
-                    // الأقسام القديمة
                     const oldDepartmentIds = currentDepartments.map(
                         (item: any) => item.department.depart_id,
                     );
 
-                    // الأقسام الجديدة
                     const newDepartmentIds = values.department_ids;
 
-                    // الأقسام المطلوب حذفها
                     const departmentsToDelete = currentDepartments.filter(
                         (item: any) =>
                             !newDepartmentIds.includes(
@@ -122,19 +134,16 @@ export default function EditDoctorPage() {
                             ),
                     );
 
-                    // الأقسام المطلوب إضافتها
                     const departmentsToAdd = newDepartmentIds.filter(
                         (id) => !oldDepartmentIds.includes(id),
                     );
 
-                    // حذف فقط ما أزيل
                     for (const item of departmentsToDelete) {
                         await deleteDepartmentMutation.mutateAsync(
                             item.doctor_deprtment_id,
                         );
                     }
 
-                    // إضافة فقط الجديد
                     for (const depart_id of departmentsToAdd) {
                         await assignDepartmentMutation.mutateAsync({
                             doctor_id: doctorId,
@@ -142,34 +151,51 @@ export default function EditDoctorPage() {
                         });
                     }
 
+                    /* ==========================================
+            الدوامات
+        ========================================== */
+
                     const currentSchedules = doctorSchedule?.results ?? [];
 
-                    //  الدوامات القديمة
                     const oldScheduleIds = currentSchedules.map(
                         (item: any) => item.schedule_id,
                     );
 
-                    if (!values.schedules) {
-                        console.log("error");
-                        return;
-                    }
-                    // الدوامات الجديدة
-                    const newScheduleIds = values.schedules
-                        .filter((item) => item.schedule_id)
-                        .map((item) => item.schedule_id);
+                    const newScheduleIds =
+                        values.schedules
+                            ?.filter((item) => item.schedule_id)
+                            .map((item) => item.schedule_id) ?? [];
 
-                    // الدومات المطلوب إضافتها
                     const schedulesToDelete = oldScheduleIds.filter(
                         (id: number) => !newScheduleIds.includes(id),
                     );
 
-                    for (const schedule of values.schedules) {
-                        if (schedule.schedule_id) {
-                            // تحديث دوام موجود
-                            await updateDoctorScheduleMutation.mutateAsync({
-                                id: schedule.schedule_id,
+                    /* حذف الدوامات */
+                    for (const scheduleId of schedulesToDelete) {
+                        await deleteDoctorScheduleMutation.mutateAsync(
+                            scheduleId,
+                        );
+                    }
 
-                                values: {
+                    /* تحديث أو إنشاء الدوامات */
+                    if (values.schedules?.length) {
+                        for (const schedule of values.schedules) {
+                            if (schedule.schedule_id) {
+                                await updateDoctorScheduleMutation.mutateAsync({
+                                    id: schedule.schedule_id,
+                                    values: {
+                                        doctor_id: doctorId,
+                                        day_of_week: schedule.day_of_week,
+                                        shift_type: schedule.shift_type,
+                                        start_time: schedule.start_time,
+                                        end_time: schedule.end_time,
+                                        max_patients: schedule.max_patients,
+                                        notes: schedule.notes,
+                                        status: schedule.status,
+                                    },
+                                });
+                            } else {
+                                await createDoctorScheduleMutation.mutateAsync({
                                     doctor_id: doctorId,
                                     day_of_week: schedule.day_of_week,
                                     shift_type: schedule.shift_type,
@@ -178,27 +204,15 @@ export default function EditDoctorPage() {
                                     max_patients: schedule.max_patients,
                                     notes: schedule.notes,
                                     status: schedule.status,
-                                },
-                            });
-                        } else {
-                            // إنشاء دوام جديد
-                            await createDoctorScheduleMutation.mutateAsync({
-                                doctor_id: doctorId,
-
-                                day_of_week: schedule.day_of_week,
-                                shift_type: schedule.shift_type,
-                                start_time: schedule.start_time,
-                                end_time: schedule.end_time,
-                                max_patients: schedule.max_patients,
-                                notes: schedule.notes,
-                                status: schedule.status,
-                            });
+                                });
+                            }
                         }
                     }
+
+                    router.push("/dashboard/doctors");
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
-                router.push("/dashboard/doctors");
             }}
         />
     );
