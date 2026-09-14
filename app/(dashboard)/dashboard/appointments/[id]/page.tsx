@@ -30,14 +30,13 @@ export default function AppointmentDetailsPage() {
         return <div>الحجز غير موجود</div>;
     }
     const appointment = data.results;
-    console.log(appointment)
     return (
         <div className="space-y-6">
             <div className="flex items-start justify-between">
                 <div>
                     <HeaderSection text="تفاصيل الحجز" />
                     <p className="text-muted-foreground">
-                        عرض جميع بيانات الحجز رقم #{appointment.appointment_id}
+                        عرض جميع بيانات الحجز رقم #{params.id}
                     </p>
                 </div>
 

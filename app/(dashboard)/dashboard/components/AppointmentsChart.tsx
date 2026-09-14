@@ -71,6 +71,7 @@ export default function AppointmentsChart() {
         })) ?? [];
 
     const statistics = data?.statistics;
+    const growth = statistics?.growth ?? 0;
 
     return (
         <Card>
@@ -151,19 +152,19 @@ export default function AppointmentsChart() {
             </CardContent>
 
             <CardFooter className="flex items-center gap-2 text-sm">
-                {statistics?.growth >= 0 ? (
+                {growth >= 0 ? (
                     <TrendingUp className="size-4 text-green-600" />
                 ) : (
                     <TrendingDown className="size-4 text-red-600" />
                 )}
 
                 <span className="font-medium">
-                    {statistics?.growth === 0
+                    {growth === 0
                         ? "لا يوجد تغيير عن الشهر الماضي"
-                        : statistics?.growth! > 0
+                        : growth > 0
                           ? `ارتفع عدد الحجوزات بنسبة ${statistics?.growth}%`
                           : `انخفض عدد الحجوزات بنسبة ${Math.abs(
-                                statistics?.growth!,
+                                statistics?.growth ?? 0,
                             )}%`}
                 </span>
             </CardFooter>

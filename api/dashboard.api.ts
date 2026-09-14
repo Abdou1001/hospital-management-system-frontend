@@ -16,5 +16,5 @@ export const appointmentsChart = async (year: number) => {
         },
     });
 
-    return data as AppointmentChartResponse[];
+    return data as AppointmentChartResponse;
 };

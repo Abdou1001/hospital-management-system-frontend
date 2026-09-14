@@ -129,12 +129,12 @@ export default function EditDoctorPage() {
 
                     const departmentsToDelete = currentDepartments.filter(
                         (item: any) =>
-                            !newDepartmentIds.includes(
+                            !newDepartmentIds!.includes(
                                 item.department.depart_id,
                             ),
                     );
 
-                    const departmentsToAdd = newDepartmentIds.filter(
+                    const departmentsToAdd = newDepartmentIds!.filter(
                         (id) => !oldDepartmentIds.includes(id),
                     );
 

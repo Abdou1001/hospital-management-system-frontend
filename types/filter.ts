@@ -88,10 +88,10 @@ export interface DoctorScheduleFilters {
 }
 
 export type DepartmentFilters = {
-    page: number;
-    limit: number;
-    keyword: string;
-    sort: "name" | "most_doctors" | "least_doctors";
+    page?: number;
+    limit?: number;
+    keyword?: string;
+    sort?: "name" | "most_doctors" | "least_doctors";
 };
 
 export const DEPARTMENT_FILTERS: DepartmentFilters = {

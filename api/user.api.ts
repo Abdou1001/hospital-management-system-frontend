@@ -1,6 +1,5 @@
 import api from "@/lib/axios";
 import {RoleProps} from "@/types/data";
-import {AppointmentFilters} from "@/types/filter";
 import {UpdateMyProfileSchema} from "@/validation/users/schemas/update-my-profile.schema";
 import {
     ChangePhoneNumberSchema,
@@ -25,7 +24,7 @@ export interface GetUsersParams {
 }
 
 export async function getUsers(
-    params: AppointmentFilters,
+    params: GetUsersParams,
 ): Promise<UsersResponse> {
     const {data} = await api.get("/users", {
         params,
@@ -64,7 +63,7 @@ export async function changeStatusUsers(id: number) {
     return data;
 }
 
-export async function changeRoleUsers(id: number, role: RoleProps) {
+export async function changeRoleUsers(id: number, role: RoleProps["role"]) {
     const {data} = await api.patch(`/users/${id}/role`, {
         role,
     });

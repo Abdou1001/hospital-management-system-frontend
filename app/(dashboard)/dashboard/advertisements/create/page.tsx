@@ -39,7 +39,7 @@ export default function CreateAdvertisementPage() {
                     ========================================== */
                     await createAdMutation.mutateAsync({
                         ...values,
-                        path_image: image,
+                        path_image: image!,
                     });
 
                     /* ==========================================

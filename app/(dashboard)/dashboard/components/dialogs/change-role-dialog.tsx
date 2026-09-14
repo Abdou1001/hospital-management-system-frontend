@@ -32,7 +32,7 @@ interface ChangeRoleDialogProps {
 
 export function ChangeRoleDialog({user}: ChangeRoleDialogProps) {
     const [open, setOpen] = useState(false);
-    const [role, setRole] = useState<RoleProps>(user.role);
+    const [role, setRole] = useState<RoleProps["role"]>(user.role);
 
     const changeRole = useChangeRoleUsers();
 
@@ -99,7 +99,7 @@ export function ChangeRoleDialog({user}: ChangeRoleDialogProps) {
                         <Select
                             value={role}
                             onValueChange={(value) =>
-                                setRole(value as RoleProps)
+                                setRole(value as RoleProps["role"])
                             }>
                             <SelectTrigger>
                                 <SelectValue />

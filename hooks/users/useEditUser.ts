@@ -36,7 +36,7 @@ export const useChangeRoleUsers = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({id, role}: {id: number; role: RoleProps}) =>
+        mutationFn: ({id, role}: {id: number; role: RoleProps["role"]}) =>
             changeRoleUsers(id, role),
 
         onSuccess(data) {

@@ -38,7 +38,8 @@ export function NavUser() {
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                             <Avatar className="h-8 w-8 rounded-lg">
                                 <AvatarImage
-                                    src={user?.avatar}
+                                    // src={user?.avatar}
+                                    src={user?.full_name}
                                     alt={user?.full_name}
                                 />
                                 <AvatarFallback className="rounded-lg bg-gray-200">
@@ -75,7 +76,8 @@ export function NavUser() {
                                 </div>
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage
-                                        src={user?.avatar}
+                                        // src={user?.avatar}
+                                        src={user?.full_name}
                                         alt={user?.full_name}
                                     />
                                     <AvatarFallback className="rounded-lg bg-gray-200">

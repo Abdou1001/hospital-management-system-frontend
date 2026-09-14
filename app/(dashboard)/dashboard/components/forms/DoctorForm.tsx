@@ -57,7 +57,7 @@ export default function DoctorForm({
     const [imageFile, setImageFile] = useState<File | null>(null);
     const preview = imageFile ? URL.createObjectURL(imageFile) : imageUrl;
 
-    const {data: departmentsData} = useDepartments({page: 1});
+    const {data: departmentsData} = useDepartments({page: 1 });
     const departments = departmentsData?.results ?? [];
 
     const form = useForm<DoctorFormValues>({
@@ -284,7 +284,7 @@ export default function DoctorForm({
                                                         departments
                                                             .filter(
                                                                 (department) =>
-                                                                    field.value.includes(
+                                                                    field.value!.includes(
                                                                         department.depart_id,
                                                                     ),
                                                             )
@@ -336,7 +336,7 @@ export default function DoctorForm({
                                                                         checked
                                                                     ) {
                                                                         field.onChange(
-                                                                            field.value.filter(
+                                                                            field.value!.filter(
                                                                                 (
                                                                                     id,
                                                                                 ) =>
