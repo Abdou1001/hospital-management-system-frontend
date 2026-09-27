@@ -21,7 +21,7 @@ export const createDoctorSchema = z.object({
     /* =========================
        نبذة عن الطبيب
     ========================= */
-    bio: z.string().trim().min(3, "النبذة مطلوبة").max(500).optional(),
+    bio: z.string().trim().min(3, "النبذة مطلوبة").max(5000).optional(),
 
     /* =========================
        المؤهل العلمي

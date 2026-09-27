@@ -49,7 +49,7 @@ export const doctorFormSchema = z.object({
         .min(3, "اسم الطبيب يجب أن يكون 3 أحرف على الأقل")
         .max(100),
 
-    bio: z.string("الوصف مطلوب").trim().max(500),
+    bio: z.string("الوصف مطلوب").trim().max(5000),
 
     education: z.string().trim().max(255).optional(),
 

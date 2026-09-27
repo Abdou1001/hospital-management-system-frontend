@@ -8,7 +8,7 @@ export const updateDoctorSchema = z.object({
         .min(3, "اسم الطبيب يجب أن يكون 3 أحرف على الأقل")
         .max(100, "اسم الطبيب طويل جدًا"),
 
-    bio: z.string().trim().min(3, "النبذة مطلوبة").max(500).optional(),
+    bio: z.string().trim().min(3, "النبذة مطلوبة").max(5000).optional(),
 
     education: z
         .string()

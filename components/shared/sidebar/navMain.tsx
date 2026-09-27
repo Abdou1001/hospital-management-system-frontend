@@ -7,7 +7,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "../../ui/sidebar";
-import { Calendar, Hospital, IdCard, LayoutDashboard, Megaphone, NotepadText, Settings, Users } from "lucide-react";
+import { Calendar, IdCard, Landmark, LayoutDashboard, Megaphone, NotepadText, Settings, Users } from "lucide-react";
 import Link from "next/link";
 
 const NavMain = () => {
@@ -19,12 +19,6 @@ const NavMain = () => {
             href: `/dashboard`,
             icon: LayoutDashboard,
             path: "الرئيسية",
-        },
-        {
-            label: "بيانات المستشفى",
-            href: `/dashboard/hospital`,
-            icon: Hospital,
-            path: "الحجوزات",
         },
         {
             label: "ادارة الحجوزات",
@@ -49,6 +43,12 @@ const NavMain = () => {
             href: `/dashboard/advertisements`,
             icon: Megaphone,
             path: "الاعلانات",
+        },
+        {
+            label: "الحسابات البنكية",
+            href: `/dashboard/bankAccounts`,
+            icon: Landmark,
+            path: "الحسابات البنكية",
         },
         {
             label: "ادارة المستخدمين",

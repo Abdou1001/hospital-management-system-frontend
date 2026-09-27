@@ -47,12 +47,6 @@ export default function AboutPage() {
                                 سياسة الاستخدام
                             </Button>
                         </Link>
-                        <Link href="/login">
-                            <Button size="sm" className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white">
-                                <LogIn className="size-4" />
-                                <span>تسجيل الدخول</span>
-                            </Button>
-                        </Link>
                     </div>
                 </div>
             </header>
@@ -200,14 +194,6 @@ export default function AboutPage() {
                             يسخر مستشفى التعاون خبراته الطبية وإمكانياته التقنية لتقديم تجربة علاجية إنسانية مريحة ترتكز على الجودة والاهتمام بكل مراجع.
                         </p>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3">
-                        <Link href="/login">
-                            <Button variant="secondary" className="bg-white text-zinc-950 hover:bg-zinc-100 gap-2">
-                                <span>الدخول إلى النظام</span>
-                                <ArrowLeft className="size-4" />
-                            </Button>
-                        </Link>
-                    </div>
                 </section>
             </main>
 
@@ -222,10 +208,6 @@ export default function AboutPage() {
                         <span>•</span>
                         <Link href="/terms" className="hover:text-black font-medium transition-colors">
                             سياسة الاستخدام
-                        </Link>
-                        <span>•</span>
-                        <Link href="/login" className="hover:text-black font-medium transition-colors">
-                            تسجيل الدخول
                         </Link>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import {Control, useFieldArray, UseFormSetValue, UseFormWatch} from "react-hook-form";
-import {Plus, Power, PowerOff, Trash2} from "lucide-react";
+import {Copy, Plus, Power, PowerOff, Trash2} from "lucide-react";
 
 import {
     FormControl,
@@ -41,7 +41,7 @@ interface Props {
 }
 
 export default function DoctorSchedulesForm({control, watch, setValue}: Props) {
-    const {fields, append, remove} = useFieldArray({
+    const {fields, append, insert, remove} = useFieldArray({
         control,
         name: "schedules",
     });
@@ -136,6 +136,28 @@ export default function DoctorSchedulesForm({control, watch, setValue}: Props) {
                                             ? "إيقاف الدوام"
                                             : "تفعيل الدوام"}
                                     </TooltipContent>
+                                </Tooltip>
+
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button
+                                            type="button"
+                                            size="icon"
+                                            variant="outline"
+                                            onClick={() => {
+                                                const current = watch(
+                                                    `schedules.${index}`,
+                                                );
+                                                insert(index + 1, {
+                                                    ...current,
+                                                    schedule_id: null,
+                                                });
+                                            }}>
+                                            <Copy className="size-4" />
+                                        </Button>
+                                    </TooltipTrigger>
+
+                                    <TooltipContent>نسخ الدوام</TooltipContent>
                                 </Tooltip>
 
                                 <Button

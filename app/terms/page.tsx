@@ -85,12 +85,6 @@ export default function TermsPage() {
                                 من نحن
                             </Button>
                         </Link>
-                        <Link href="/login">
-                            <Button size="sm" className="gap-2 bg-zinc-900 hover:bg-zinc-800 text-white">
-                                <LogIn className="size-4" />
-                                <span>تسجيل الدخول</span>
-                            </Button>
-                        </Link>
                     </div>
                 </div>
             </header>
@@ -165,10 +159,6 @@ export default function TermsPage() {
                         <span>•</span>
                         <Link href="/terms" className="hover:text-black font-medium transition-colors">
                             سياسة الاستخدام
-                        </Link>
-                        <span>•</span>
-                        <Link href="/login" className="hover:text-black font-medium transition-colors">
-                            تسجيل الدخول
                         </Link>
                     </div>
                 </div>
