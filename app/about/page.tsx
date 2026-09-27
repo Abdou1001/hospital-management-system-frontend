@@ -187,8 +187,8 @@ export default function AboutPage() {
                 </section>
 
                 {/* Values Banner */}
-                <section className="bg-zinc-900 text-white rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="space-y-2 text-center md:text-right">
+                <section className="bg-zinc-900 text-white rounded-2xl p-8 sm:p-10 flex  items-center justify-center">
+                    <div className="space-y-2 text-center">
                         <h3 className="text-2xl font-bold">هدفنا: رعاية طبية ترتقي لتطلعاتكم</h3>
                         <p className="text-zinc-300 text-sm max-w-xl leading-relaxed">
                             يسخر مستشفى التعاون خبراته الطبية وإمكانياته التقنية لتقديم تجربة علاجية إنسانية مريحة ترتكز على الجودة والاهتمام بكل مراجع.
