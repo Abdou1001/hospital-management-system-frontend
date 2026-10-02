@@ -22,8 +22,6 @@ const AdvertisementsPage = () => {
     =============================== */
     const {data, isLoading} = useAds(filters);
 
-    // console.log(data)
-
     
 
     return (

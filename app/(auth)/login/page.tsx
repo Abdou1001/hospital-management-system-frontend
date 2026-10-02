@@ -57,7 +57,7 @@ export default function Login() {
     return (
         <Card className="w-full max-w-sm">
             <CardHeader className="text-center">
-                <CardTitle className="text-2xl">تسجيل الدخول</CardTitle>
+                <CardTitle className="text-2xl">تسجيل الدخول إلى لوحة الإدارة</CardTitle>
 
                 <CardDescription>
                     أدخل البريد الإلكتروني أو رقم الهاتف وكلمة المرور

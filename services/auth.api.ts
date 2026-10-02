@@ -8,7 +8,7 @@ import {
 
 // login
 export const login = async (values: LoginSchema) => {
-    const {data} = await api.post("/auth/login", values);
+    const {data} = await api.post("/auth/adminlogin", values);
     return data;
 };
 

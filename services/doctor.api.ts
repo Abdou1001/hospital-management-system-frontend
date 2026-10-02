@@ -23,7 +23,7 @@ export async function getOneDoctor(id: number): Promise<DoctorResponse> {
 
 export async function createDoctor(formData: FormData) {
     const {data} = await api.post("/doctors", formData);
-    console.log(data)
+
     return data;
 }
 
